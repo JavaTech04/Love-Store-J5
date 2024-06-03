@@ -1,0 +1,46 @@
+CREATE DATABASE LoveStore;
+USE LoveStore;
+
+CREATE TABLE Categories (
+    id VARCHAR(100) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Products (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name NVARCHAR(100) NOT NULL,
+    image NVARCHAR(100),
+    price FLOAT,
+    Categoryid VARCHAR(100) NOT NULL,
+    Createdate DATE NOT NULL,
+    available TINYINT,
+    FOREIGN KEY (Categoryid) REFERENCES Categories(id)
+);
+
+CREATE TABLE Accounts (
+    username VARCHAR(100) PRIMARY KEY,
+    password NVARCHAR(100) NOT NULL,
+    fullname NVARCHAR(100) NOT NULL,
+    email NVARCHAR(100) NOT NULL,
+    photo NVARCHAR(500),
+    activated TINYINT,
+    admin TINYINT
+);
+
+CREATE TABLE Orders (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    address NVARCHAR(100),
+    Createdate DATE NOT NULL,
+    Username VARCHAR(100),
+    FOREIGN KEY (Username) REFERENCES Accounts(username)
+);
+
+CREATE TABLE OrderDetails (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    price FLOAT,
+    quantity INT,
+    Productid INT NOT NULL,
+    Orderid BIGINT NOT NULL,
+    FOREIGN KEY (Productid) REFERENCES Products(id),
+    FOREIGN KEY (Orderid) REFERENCES Orders(id)
+);

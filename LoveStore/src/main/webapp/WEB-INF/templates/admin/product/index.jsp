@@ -5,7 +5,7 @@
         <h2 class="text-dark-emphasis m-2">Products overview</h2>
     </div>
     <div class="col-6 d-flex align-items-center justify-content-end">
-        <a href="/product/add" class="btn border"><i class="bi bi-plus"></i> Create new</a>
+        <a href="/admin/product/add" class="btn border"><i class="bi bi-plus"></i> Create new</a>
     </div>
 </div>
 <hr>

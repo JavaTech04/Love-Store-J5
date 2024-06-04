@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <jsp:include page="layout/_navbar_admin.jsp"/>
+<jsp:include page="layout/_navbar_admin.jsp"/>
+<div class="container shadow p-3 mb-5 bg-body-tertiary rounded border mt-5">
     <jsp:include page="admin/index.jsp"/>
+</div>
 </body>
 </html>

@@ -7,10 +7,10 @@
 </c:if>
 <span class="h5 text-dark-emphasis text-uppercase">
     <i class="bi bi-box2-fill text-dark-emphasis"></i>
-    <span class="fw-bold">New product</span>
+    <span class="fw-bold">Update product</span>
 </span>
 <hr>
-<form:form modelAttribute="product" action="/admin/product/add" enctype="multipart/form-data" method="post">
+<form:form modelAttribute="product" action="/admin/product/edit?id=${product.id}" enctype="multipart/form-data" method="post">
     <div class="row">
         <div class="col">
             <div class="mb-3">
@@ -76,6 +76,7 @@
             containerInputImage.style.display = 'none';
         }
     }
+
     checkInputs();
     nameInput.addEventListener('input', checkInputs);
     priceInput.addEventListener('input', checkInputs);

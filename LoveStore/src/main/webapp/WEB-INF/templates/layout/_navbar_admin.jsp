@@ -8,40 +8,49 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin">Home</a>
+                    <a class="nav-link" aria-current="page" href="/admin"><i class="bi bi-house-door-fill"></i> Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Products
+                        <i class="bi bi-box-seam-fill"></i> Products
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/admin/product">Overview</a></li>
-                        <li><a class="dropdown-item" href="/admin/product/add">Create product</a></li>
+                        <li><a class="dropdown-item" href="/admin/product"><i class="bi bi-eye"></i> Overview</a></li>
+                        <li><a class="dropdown-item" href="/admin/product/add"><i class="bi bi-plus-circle"></i> Create product</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Account
+                        <i class="bi bi-people-fill"></i> Account
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/admin/account">Overview</a></li>
-                        <li><a class="dropdown-item" href="/admin/account/add">Create account</a></li>
+                        <li><a class="dropdown-item" href="/admin/account"><i class="bi bi-eye"></i> Overview</a></li>
+                        <li><a class="dropdown-item" href="/admin/account/add"><i class="bi bi-plus-circle"></i> Create account</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item no-arrow">
-                <a class="nav-link dropdown-toggle p-0" data-bs-toggle="dropdown" href="#">
-                    <img alt="" class="rounded-circle" style="width:60px"
-                         src="/static/images/user.svg" />
+                <a class="nav-link p-0" data-bs-toggle="dropdown" href="#">
+                    <div class="user-avatar">
+                        <span class="username m-2">${sessionScope.username}</span>
+                        <img alt="User Avatar" class="rounded-circle" style="width:40px; height: 40px" src="/static/images/logo.jpg"/>
+                    </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="/logout">
-                        Logout
+                    <button onclick="showAdmin()" class="dropdown-item">Role: ${sessionScope.roles == 'ROLE_admin' ? 'Admin' : 'User'}</button>
+                    <a><hr class="dropdown-divider"></a>
+                    <a class="dropdown-item" href=" ${empty sessionScope.username ? '/login' : '/logout'}">
+                        ${empty sessionScope.username ? '<i class="bi bi-box-arrow-in-right"></i> Login' : '<i class="bi bi-box-arrow-left"></i> Logout'}
                     </a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
+<script>
+    const showAdmin = () => {
+        swal('Verify', 'You are admin!', 'success')
+    }
+</script>

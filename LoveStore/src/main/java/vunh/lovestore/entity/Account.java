@@ -4,8 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,33 +14,32 @@ import lombok.Setter;
 @Table(name = "accounts")
 public class Account {
     @Id
-    @Size(max = 100)
+    @NotBlank
     @Column(name = "username", nullable = false, length = 100)
     private String username;
 
     @Size(max = 100)
-    @NotNull
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
     @Size(max = 100)
-    @NotNull
+    @NotBlank
     @Column(name = "fullname", nullable = false, length = 100)
-    private String fullname;
+    private String fullName;
 
     @Size(max = 100)
-    @NotNull
+    @NotBlank
+    @Email
     @Column(name = "email", nullable = false, length = 100)
     private String email;
 
-    @Size(max = 500)
     @Column(name = "photo", length = 500)
     private String photo;
 
     @Column(name = "activated")
-    private Byte activated = 0;
+    private Byte activated;
 
     @Column(name = "admin")
-    private Byte admin = 0;
+    private Byte admin;
 
 }

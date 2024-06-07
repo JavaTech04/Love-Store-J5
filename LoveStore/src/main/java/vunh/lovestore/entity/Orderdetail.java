@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "orderdetails")
+@ToString
 public class Orderdetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +18,7 @@ public class Orderdetail {
     private Long id;
 
     @Column(name = "price")
-    private Float price;
+    private Double price;
 
     @Column(name = "quantity")
     private Integer quantity;

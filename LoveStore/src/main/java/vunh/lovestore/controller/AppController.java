@@ -9,8 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import vunh.lovestore.entity.Category;
-import vunh.lovestore.entity.Orderdetail;
-import vunh.lovestore.entity.ProductFilter;
+import vunh.lovestore.dto.ProductFilter;
 import vunh.lovestore.service.CartService;
 import vunh.lovestore.service.ProductService;
 
@@ -31,8 +30,8 @@ public class AppController {
     private HttpSession session;
 
     @ModelAttribute("carts")
-    List<Orderdetail> getAllCart(){
-        return this.cartService.getItems();
+    CartService cartService() {
+        return this.cartService;
     }
 
     @ModelAttribute("productFilter")
@@ -73,6 +72,9 @@ public class AppController {
 
     @GetMapping("/cart")
     public String cart(Model model) {
+        if(cartService.getTotal() == 0){
+            return "redirect:/";
+        }
         model.addAttribute("views", "cart.jsp");
         return "index";
     }
@@ -80,7 +82,41 @@ public class AppController {
     @GetMapping("/add-to-cart/{id}")
     public String addToCart(@PathVariable("id") Integer id, Model model) {
         this.cartService.addToCart(id);
+        return STR."redirect:/view/\{id}?add_success";
+    }
+
+    @GetMapping("/remove-item/{index}")
+    public String removeItem(@PathVariable("index") Integer index) {
+        this.cartService.removeFromCart(index);
         return "redirect:/cart";
     }
 
+    @PostMapping("/update-item/{product}")
+    public String updateItem(@PathVariable("product") Integer productId, @RequestParam("quantity") Integer quantity) {
+        try {
+            this.cartService.updateCart(productId, quantity);
+            return "redirect:/cart";
+        } catch (Exception _) {
+            return "redirect:/cart?error";
+        }
+    }
+
+    @GetMapping("/checkout")
+    public String openCheckout(Model model) {
+        if (session.getAttribute("username") == null) {
+            return "redirect:/login?checkout";
+        }
+        if(cartService.getTotal() == 0){
+            return "redirect:/";
+        }
+        model.addAttribute("views", "checkout.jsp");
+        return "index";
+    }
+
+    @PostMapping("/checkout")
+    public String checkout(@RequestParam("address") String address) {
+        this.cartService.store(address, (String) this.session.getAttribute("username"));
+        this.cartService.clearCart();
+        return "redirect:/?checkout_successfully";
+    }
 }

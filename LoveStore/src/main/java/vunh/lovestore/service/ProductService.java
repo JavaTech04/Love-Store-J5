@@ -6,12 +6,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vunh.lovestore.entity.Category;
 import vunh.lovestore.entity.Product;
-import vunh.lovestore.entity.ProductFilter;
+import vunh.lovestore.dto.ProductFilter;
 import vunh.lovestore.repository.CategoriesRepository;
 import vunh.lovestore.repository.ProductRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {

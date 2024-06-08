@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<c:if test="${param.checkout_successfully != null}">
+    <script>
+        swal('Success', 'Checkout Successfully', 'success')
+    </script>
+</c:if>
 <div class="row m-2 container-fluid">
     <form:form modelAttribute="productFilter" class="col-3 border" action="/" method="get">
         <div class="m-2">
@@ -71,7 +76,8 @@
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" href="/?p=0${url}">First</a></li>
                     <c:if test="${products.hasPrevious()}">
-                        <li class="page-item"><a class="page-link" href="/?p=${products.number - 1}${url}">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="/?p=${products.number - 1}${url}">Previous</a>
+                        </li>
                     </c:if>
                     <li class="page-item"><a class="page-link">${products.number + 1}</a></li>
                     <c:if test="${products.hasNext()}">

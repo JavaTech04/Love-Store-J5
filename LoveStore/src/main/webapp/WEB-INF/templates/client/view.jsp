@@ -23,14 +23,16 @@
         padding: 5px;
         font-size: 0.9rem;
     }
-
-
 </style>
+<c:if test="${param.add_success != null}">
+    <script>
+        swal("Success!", "Item has been added to your shopping cart", "success");
+    </script>
+</c:if>
 <div class="container mt-5">
-    <span class="h4">
-    <i class="bi bi-eye-fill text-danger"></i>
-    <span class="fw-bold">View Product</span>
-</span>
+    <span class=" fw-bold h5"><i class="bi bi-shop"></i> LoveStore</span>
+    <span class="h5">|</span>
+    <strong class="h5">Detail</strong>
     <hr>
     <div class="row">
         <div class="col-md-6">
@@ -42,21 +44,24 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h3>${product.categoryid.name}</h3>
-            <h2>${product.name}</h2>
-            <div class="d-flex align-items-center">
+            <h3 class="text-secondary"><i class="bi bi-bookmark-check-fill text-primary"></i> ${product.categoryid.name}</h3>
+            <hr>
+            <p class="text-secondary h3">${product.name}</p>
+            <div class="d-flex align-items-center mt-3">
                 <h3 class="text-danger">$${product.price}</h3>
             </div>
             <div class="my-3">
                 <span>Rating: </span><span class="text-warning">★★★★☆</span>
             </div>
             <div class="my-3">
-                <h5>Transport</h5>
-                <p>Order processing by Nong Hoang Vu <br>
-                    Free shipping</p>
+                <hr>
+                <h5><i class="bi bi-truck"></i> Transport</h5>
+                <i>Order processing by Nong Hoang Vu <br>
+                    Free shipping.</i>
             </div>
             <div class="my-3">
-                <h5>Color</h5>
+                <hr>
+                <h5><i class="bi bi-palette"></i> Color</h5>
                 <div class="d-flex">
                     <input class="border-0" type="color" value="#c1c1c1" disabled>
                     <input class="border-0" type="color" value="#f31111" disabled>
@@ -64,9 +69,11 @@
                     <input class="border-0" type="color" value="#000000" disabled>
                 </div>
             </div>
+            <hr>
             <div class="my-3 mt-5">
-                <a href="/" class="btn btn-danger ">Cancel</a>
-                <a href="/add-to-cart/${product.id}" class="btn btn-warning text-white">Add to cart</a>
+                <a href="/" class="btn btn-outline-danger "><i class="bi bi-x"></i> Cancel</a>
+                <a href="/add-to-cart/${product.id}" class="btn btn-outline-warning"><i class="bi bi-cart-plus"></i> Add
+                    to cart</a>
             </div>
         </div>
     </div>

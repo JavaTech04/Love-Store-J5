@@ -25,6 +25,11 @@
                 swal("Failed!", "Username or password is incorrect!", "error");
             </script>
         </c:if>
+        <c:if test="${param.checkout != null}">
+            <script>
+                swal("Warning!", "You need to log in before checkout!", "info");
+            </script>
+        </c:if>
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
             <input type="text" name="username" id="username" placeholder="Username">

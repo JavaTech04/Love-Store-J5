@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class Order {
 
     @NotNull
     @Column(name = "Createdate", nullable = false)
-    private LocalDate createdate;
+    private Date createdate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Username")
